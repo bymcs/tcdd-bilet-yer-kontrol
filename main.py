@@ -9,10 +9,10 @@ from concurrent.futures import ThreadPoolExecutor
 
 import Control, Rota, DriverSetting , DriverGet, SeferKontrol
 
-def driverSetting():
+def driver_setting():
     return DriverSetting.DriverSetting().driverUP()
 
-def driverGet(drivers):
+def driver_get(drivers):
     DriverGet.DriverGet(drivers).driverGet()
 
 def rota(driver,first_location,last_location,date):
@@ -27,10 +27,11 @@ def sefer(driver,timee):
 
 def mainLoop(nereden, nereye, tarih, saat):
     while True:
-        driver = driverSetting()
-        driverGet(driver)
+        driver = driver_setting()
+        driver_get(driver)
         rota(driver,nereden,nereye,tarih)
         sefer(driver,saat)
+        driver.quit()
         # control(driver,saat)
 
 
